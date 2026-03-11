@@ -429,28 +429,51 @@
     .casos-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 18px;
     }
 
     .caso-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      background: #171717;
+      border: 1px solid #2d2d2d;
+      border-radius: 20px;
       padding: 28px;
-      transition: border-color 0.25s, transform 0.25s;
+      transition: border-color 0.25s, transform 0.25s, background 0.25s;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
     }
 
     .caso-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
+      border-color: rgba(0,200,150,0.8);
+      transform: translateY(-4px);
+      background: #1b1b1b;
     }
 
     .caso-card.cta-card {
-      background: linear-gradient(135deg, rgba(0,200,150,0.1), rgba(0,200,150,0.03));
+      background: linear-gradient(135deg, rgba(0,200,150,0.14), rgba(0,200,150,0.04));
       border-color: rgba(0,200,150,0.3);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+    }
+
+    .caso-arrow {
+      margin-top: auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid #3b3b3b;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      transition: all 0.25s;
+    }
+
+    .caso-card:hover .caso-arrow {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: rotate(90deg);
     }
 
     .caso-tag {
@@ -661,83 +684,88 @@
     }
 
     /* ── PACKS ── */
-    .packs { background: var(--bg2); }
+    .packs {
+      background: #fff;
+      color: #121212;
+      border-top-left-radius: 42px;
+      border-top-right-radius: 42px;
+      margin-top: 80px;
+      position: relative;
+      z-index: 2;
+    }
 
-    .packs-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+    .packs::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 10%, rgba(1,195,142,0.1), transparent 35%);
+      pointer-events: none;
+    }
+
+    .packs .section-sub { color: #59626a; }
+
+    .packs-table {
       margin-top: 56px;
+      border: 1px solid #e5e9ec;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
     }
 
-    .pack-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      transition: all 0.25s;
-      display: flex;
-      flex-direction: column;
+    .pack-row {
+      display: grid;
+      grid-template-columns: 1.1fr repeat(3, 1fr);
+      border-top: 1px solid #edf0f2;
     }
 
-    .pack-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .pack-row:first-child { border-top: none; }
+    .pack-row.header-row { background: #fbfcfc; }
 
-    .pack-card.featured {
-      background: linear-gradient(160deg, rgba(0,200,150,0.12) 0%, var(--card) 60%);
-      border-color: rgba(0,200,150,0.4);
+    .pack-label,
+    .pack-cell {
+      padding: 24px;
+      border-left: 1px solid #edf0f2;
     }
 
-    .pack-card.featured:hover { border-color: var(--accent); }
-
-    .pack-icon {
-      width: 44px; height: 44px;
-      background: rgba(0,200,150,0.1);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      margin-bottom: 20px;
+    .pack-label {
+      border-left: none;
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #5a6168;
     }
 
-    .pack-card h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 10px;
+    .pack-head {
+      position: sticky;
+      top: 84px;
+      z-index: 4;
+      background: #fbfcfc;
     }
 
-    .pack-card p {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 20px;
-      font-weight: 300;
-    }
+    .pack-head h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .pack-head p { color: #64707a; font-size: 0.86rem; line-height: 1.6; }
 
-    .pack-items { list-style: none; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .pack-cell ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .pack-cell li { font-size: 0.88rem; color: #2d3338; display: flex; gap: 8px; }
+    .pack-cell li::before { content: '✓'; color: #01c38e; font-weight: 800; }
 
-    .pack-items li {
-      font-size: 0.85rem;
-      color: var(--muted);
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-
-    .pack-items li::before {
-      content: '✓';
-      color: var(--accent);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
+    .pack-price { font-size: 1.35rem; font-weight: 900; color: #101418; }
+    .pack-time { color: #4f5961; font-size: 0.9rem; }
 
     /* ── CTA BANNER ── */
     .cta-banner {
-      background: linear-gradient(135deg, #0d2018 0%, #0d0d0d 50%, #0d1a14 100%);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      background: #fff;
       padding: 80px 0;
       text-align: center;
+    }
+
+    .cta-banner .container {
+      background: linear-gradient(140deg, #0b1612 0%, #10211a 55%, #173429 100%);
+      border-radius: 24px;
+      border: 1px solid #20362d;
+      padding-top: 72px;
+      padding-bottom: 72px;
     }
 
     .cta-banner h2 {
@@ -747,10 +775,10 @@
       margin-bottom: 16px;
     }
 
-    .cta-banner p { color: var(--muted); margin-bottom: 36px; font-size: 1rem; font-weight: 300; }
+    .cta-banner p { color: #a5b2ab; margin-bottom: 36px; font-size: 1rem; font-weight: 300; }
 
     /* ── FAQ ── */
-    .faq { background: var(--bg); }
+    .faq { background: #fff; color: #131313; }
 
     .faq-grid {
       display: grid;
@@ -762,7 +790,7 @@
     .faq-list { display: flex; flex-direction: column; gap: 0; }
 
     .faq-item {
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #e7ecef;
       overflow: hidden;
     }
 
@@ -774,7 +802,7 @@
       padding: 20px 0;
       font-family: 'Lato', sans-serif;
       font-size: 0.95rem;
-      color: var(--text);
+      color: #131313;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
@@ -786,7 +814,7 @@
     .faq-question:hover { color: var(--accent); }
 
     .faq-arrow {
-      color: var(--muted);
+      color: #5e6971;
       transition: transform 0.25s, color 0.2s;
       flex-shrink: 0;
     }
@@ -795,7 +823,7 @@
 
     .faq-answer {
       font-size: 0.875rem;
-      color: var(--muted);
+      color: #5e6971;
       line-height: 1.7;
       max-height: 0;
       overflow: hidden;
@@ -954,7 +982,9 @@
       .casos-grid { grid-template-columns: 1fr; }
       .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
       .metodo-grid { grid-template-columns: 1fr; gap: 40px; }
-      .packs-grid { grid-template-columns: 1fr; }
+      .pack-row { grid-template-columns: 1fr; }
+      .pack-label { background: #f7faf9; border-bottom: 1px solid #edf0f2; }
+      .pack-head { position: static; }
       .faq-grid { grid-template-columns: 1fr; gap: 40px; }
       .contacto-grid { grid-template-columns: 1fr; gap: 40px; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -1014,10 +1044,10 @@
   <div class="container">
     <div class="casos-intro fade-in">
       <div>
-        <div class="section-label">Casos de uso reales</div>
-        <h2 class="section-title">Lo difícil no es entender la IA,<br>sino saber por dónde empezar</h2>
+        <div class="section-label">Pregúntanos</div>
+        <h2 class="section-title">Servicios IA con formato<br>y efectos inspirados en landing</h2>
       </div>
-      <p class="section-sub">Comenzamos siempre por casos de uso concretos que eliminan fricción operativa y generan impacto medible desde el primer mes.</p>
+      <p class="section-sub">Arrancamos por fricciones operativas reales: priorizamos, implementamos y medimos impacto para que cada decisión de IA tenga retorno tangible.</p>
     </div>
 
     <div class="casos-grid fade-in">
@@ -1033,6 +1063,7 @@
           <li>Emails de seguimiento estratégicos</li>
           <li>Resúmenes automáticos tras reuniones</li>
         </ul>
+        <span class="caso-arrow">+</span>
       </div>
 
       <div class="caso-card">
@@ -1047,6 +1078,7 @@
           <li>Extracción automática de decisiones</li>
           <li>Generación de tareas con responsable</li>
         </ul>
+        <span class="caso-arrow">+</span>
       </div>
 
       <div class="caso-card">
@@ -1061,6 +1093,7 @@
           <li>Confirmaciones y cambios de cita</li>
           <li>Filtrado de urgencias reales</li>
         </ul>
+        <span class="caso-arrow">+</span>
       </div>
 
       <div class="caso-card">
@@ -1076,6 +1109,7 @@
           <li>Alertas ante incidencias críticas</li>
           <li>Informe estratégico mensual</li>
         </ul>
+        <span class="caso-arrow">+</span>
       </div>
 
       <div class="caso-card">
@@ -1091,6 +1125,7 @@
           <li>Solicitud de documentación faltante</li>
           <li>Generación de ficha interna</li>
         </ul>
+        <span class="caso-arrow">+</span>
       </div>
 
       <div class="caso-card cta-card">
@@ -1182,43 +1217,70 @@
     <div class="fade-in">
       <div class="section-label">Packs Consulting AI</div>
       <h2 class="section-title">Elige tu modelo<br>de adopción de IA</h2>
-      <p class="section-sub">Diseñamos e implementamos Agentes IA adaptados a tus procesos clave: sin humo, con método y con métricas claras desde el primer mes.</p>
+      <p class="section-sub">Una estructura inspirada en nuestra landing de referencia: comparativa clara, enfoque práctico y visibilidad permanente de cada pack mientras haces scroll.</p>
     </div>
 
-    <div class="packs-grid fade-in">
-      <div class="pack-card featured">
-        <div class="pack-icon">⚡</div>
-        <h3>Sprint IA</h3>
-        <p>Implementamos agentes de IA en 30 días para que obtengas resultados medibles desde ya, sin pilotos eternos ni complejidad innecesaria.</p>
-        <ul class="pack-items">
-          <li>Negocios que no saben por dónde empezar</li>
-          <li>Directivos que quieren validar impacto rápido</li>
-          <li>Resultados medibles en 30 días</li>
-        </ul>
+    <div class="packs-table fade-in">
+      <div class="pack-row header-row">
+        <div class="pack-label">Modelo</div>
+        <div class="pack-cell pack-head">
+          <h3>Sprint IA</h3>
+          <p>Validación rápida con impacto en 30 días.</p>
+        </div>
+        <div class="pack-cell pack-head">
+          <h3>IA as a Service</h3>
+          <p>Evolución continua de agentes y procesos.</p>
+        </div>
+        <div class="pack-cell pack-head">
+          <h3>Transformation IA</h3>
+          <p>Transformación integral para escalar el negocio.</p>
+        </div>
       </div>
 
-      <div class="pack-card">
-        <div class="pack-icon">🔄</div>
-        <h3>IA as a Service</h3>
-        <p>La IA cambia cada semana, por esto te acompañamos para adoptar mejoras reales en tu negocio continuamente.</p>
-        <ul class="pack-items">
-          <li>Optimización continua</li>
-          <li>Nuevos agentes</li>
-          <li>Mejora de prompts y procesos</li>
-          <li>Formación ejecutiva</li>
-        </ul>
+      <div class="pack-row">
+        <div class="pack-label">Ideal para</div>
+        <div class="pack-cell">Empresas que quieren empezar sin riesgo y ver resultados rápidos.</div>
+        <div class="pack-cell">Equipos que ya usan IA y necesitan mantener ventaja competitiva.</div>
+        <div class="pack-cell">Organizaciones que buscan rediseñar operaciones, ventas y dirección con IA.</div>
       </div>
 
-      <div class="pack-card">
-        <div class="pack-icon">🚀</div>
-        <h3>Transformation IA</h3>
-        <p>Redefinimos las áreas clave de tu negocio con IA integrada en la estrategia de la organización.</p>
-        <ul class="pack-items">
-          <li>Operaciones</li>
-          <li>Ventas</li>
-          <li>Reporting</li>
-          <li>Dirección</li>
-        </ul>
+      <div class="pack-row">
+        <div class="pack-label">Incluye</div>
+        <div class="pack-cell">
+          <ul>
+            <li>Diagnóstico de oportunidades</li>
+            <li>Implementación de 1-2 agentes IA</li>
+            <li>KPIs de impacto en 30 días</li>
+          </ul>
+        </div>
+        <div class="pack-cell">
+          <ul>
+            <li>Optimización continua mensual</li>
+            <li>Nuevos agentes por prioridad</li>
+            <li>Mejora de prompts y formación ejecutiva</li>
+          </ul>
+        </div>
+        <div class="pack-cell">
+          <ul>
+            <li>Roadmap estratégico de IA por áreas</li>
+            <li>Automatización end-to-end de procesos críticos</li>
+            <li>Acompañamiento a dirección y mandos</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pack-row">
+        <div class="pack-label">Inversión orientativa</div>
+        <div class="pack-cell"><div class="pack-price">Desde 3.900€</div></div>
+        <div class="pack-cell"><div class="pack-price">Desde 1.500€/mes</div></div>
+        <div class="pack-cell"><div class="pack-price">Proyecto a medida</div></div>
+      </div>
+
+      <div class="pack-row">
+        <div class="pack-label">Timeline</div>
+        <div class="pack-cell"><div class="pack-time">4 semanas</div></div>
+        <div class="pack-cell"><div class="pack-time">Servicio recurrente</div></div>
+        <div class="pack-cell"><div class="pack-time">8-16 semanas</div></div>
       </div>
     </div>
   </div>
@@ -1227,8 +1289,8 @@
 <!-- CTA BANNER -->
 <div class="cta-banner">
   <div class="container">
-    <h2>¿Listo para optimizar?</h2>
-    <p>En solo 30 días podrías tener tu solución de IA implementada y generando resultados.<br><strong>Agenda tu consulta gratuita hoy</strong> y tracemos la ruta práctica para transformar tus flujos de trabajo ahora mismo.</p>
+    <h2>Ready to Optimize?</h2>
+    <p>En solo 30 días podrías tener una solución de IA funcionando y con métricas reales.<br><strong>Agenda una llamada gratuita</strong> y te enseñamos el mejor camino para tu negocio.</p>
     <a href="#contacto" class="btn-cta">Contacta con nosotros →</a>
   </div>
 </div>
